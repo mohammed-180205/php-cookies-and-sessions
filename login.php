@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 ?> 
 
 <!DOCTYPE html>
@@ -44,7 +45,7 @@ Password: <input type="password" name="password"><br><br>
 </html>
 
 <?php
-if(isset($_POST["submit"])){
+if(isset($_POST["submit"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($_POST["username"]) || empty($_POST["password"])){
         echo "Name and/or Password missing!!";
     } else if(empty($_POST["color"])){
@@ -52,13 +53,22 @@ if(isset($_POST["submit"])){
     } else{
         setcookie("color",$_POST["color"], (time() + (86400*7)), "/" );
         $username = filter_input(INPUT_POST,"username",FILTER_SANITIZE_SPECIAL_CHARS);
+        $password = $_POST["password"];
+        $color = $_POST["color"];
         $_SESSION["username"] = $username;
         header("Location:dashboard.php");
+        include("database.php");
+
+$sql = "INSERT INTO users (username,password,color)
+VALUES ('$username', '$password', '$color')";
+
+mysqli_query($conn,$sql);
+
+
+mysqli_close($conn);
     }
         
     } 
-    
- 
 
 
 ?>
