@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+$color = $_COOKIE["color"];
 
 ?>
 
@@ -11,6 +11,18 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Page</title>
+    <style>
+        body{
+            background-color: <?php echo $color; ?>;
+            
+        }
+        input{
+            background-color: <?php echo $color; ?>;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+    </style>
+
 </head>
 <body>
     <?php 
