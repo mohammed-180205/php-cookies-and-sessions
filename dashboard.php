@@ -20,14 +20,17 @@ $color = $_COOKIE["color"];
             background-color: <?php echo $color; ?>;
             border: 1px solid black;
             border-radius: 5px;
+            width: 80px;
+            height: 30px;
         }
     </style>
 
 </head>
 <body>
-    <?php 
+    <h2><?php 
         echo "WELCOME, {$_SESSION["username"]}";
-    ?>
+    ?></h2>
+    
 
 <form action="" method="post">
     <input type="submit" value="Logout" name = "logout">
